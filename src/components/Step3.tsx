@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
-import { StepProps } from '../interfaces'
+import { LastStep } from '../interfaces'
 
-export function Step3({ setMyState, available }: StepProps): JSX.Element {
+export function Step3({ setMyState, available, handleSubmit }: LastStep): JSX.Element {
 
   let [letSRock, setLetSRock] = useState<boolean | null>(null)
 
@@ -20,7 +20,13 @@ export function Step3({ setMyState, available }: StepProps): JSX.Element {
           Are you ready to rock?
       </label>
       <input type="checkbox" id="rock" onChange={(e) => setLetSRock(e.target.checked)}/>
-      <input type="submit" id="submit_button" disabled={!(!!letSRock)} value="Complete Registration"/>
+      <input 
+        type="submit" 
+        id="submit_button" 
+        disabled={!(!!letSRock)} 
+        value="Complete Registration"
+        onClick={(e) => {e.preventDefault(); handleSubmit()}}
+      />
     </fieldset>
   )
 }
