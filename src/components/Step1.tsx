@@ -1,11 +1,11 @@
 import React, { useState, useEffect } from 'react';
-import { StepProps } from '../interfaces'
+import { NotLastStep } from '../interfaces'
 
 interface Names {
   [key: string]: string
 }
 
-export function Step1({ setMyState, setNextStep }: StepProps): JSX.Element {
+export function Step1({ setMyState, setNextStep, available }: NotLastStep): JSX.Element {
   let [peopleCount, setPeopleCount] = useState<number>(0)
   let [names, setNames] = useState<Names>({})
   let [isComplete, setIsComplete] = useState<boolean>(false)

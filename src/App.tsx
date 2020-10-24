@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { Step1 } from './components/Step1'
 import { Step2 } from './components/Step2'
+import { Step3 } from './components/Step3'
 
 interface StateSteps{
   step1: boolean,
@@ -43,9 +44,12 @@ export default function App(): JSX.Element {
   }
 
   return (
-    <div className="steps-container">
-      <Step1 setMyState={setStepState} setNextStep={setNextStep} available={stepsAvailable.step1}></Step1>
-      <Step2 setMyState={setStepState} setNextStep={setNextStep} available={stepsAvailable.step2}></Step2>
-    </div>
+    <form action="">
+      <div className="steps-container">
+        <Step1 setMyState={setStepState} setNextStep={setNextStep} available={stepsAvailable.step1}></Step1>
+        <Step2 setMyState={setStepState} setNextStep={setNextStep} available={stepsAvailable.step2}></Step2>
+        <Step3 setMyState={setStepState} available={stepsAvailable.step3}></Step3>
+      </div>
+    </form>
   )
 }

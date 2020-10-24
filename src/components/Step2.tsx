@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
-import { StepProps } from '../interfaces'
+import { NotLastStep } from '../interfaces'
 
-export function Step2({setMyState, setNextStep}: StepProps): JSX.Element {
+export function Step2({setMyState, setNextStep, available}: NotLastStep): JSX.Element {
 
   let [companyBadge, setCompanyBadge] = useState<boolean | null>(null)
   let [companyName, setCompanyName] = useState<string>('')
