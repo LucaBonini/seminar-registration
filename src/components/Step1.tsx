@@ -1,15 +1,11 @@
 import React, { useState, useEffect } from 'react';
-import { JsxEmit } from 'typescript';
+import { StepProps } from '../interfaces'
 
 interface Names {
   [key: string]: string
 }
 
-interface StepProps {
-  setMyState(stepName: string, value: boolean): void
-}
-
-export function Step1({ setMyState }: StepProps): JSX.Element {
+export function Step1({ setMyState, setNextStep }: StepProps): JSX.Element {
   let [peopleCount, setPeopleCount] = useState<number>(0)
   let [names, setNames] = useState<Names>({})
   let [isComplete, setIsComplete] = useState<boolean>(false)
@@ -18,9 +14,11 @@ export function Step1({ setMyState }: StepProps): JSX.Element {
     if (checkValues()) {
       setIsComplete(true)
       setMyState('step1', true)
+      setNextStep('step2', true)
     } else {
       setIsComplete(false)
       setMyState('step2', false)
+      setNextStep('step2', false)
     }
   }, [names])
 
@@ -37,27 +35,25 @@ export function Step1({ setMyState }: StepProps): JSX.Element {
     setNames(newNames)
   }
 
-  function renderInputNames() {
-    if (peopleCount > 0) {
-      let inputs: JSX.Element[] = []
-      for (let i = 1; i <= peopleCount; i++) {
-        let input = (
-          <div id={`attendee_${i}_wrap"`} key={i}>
-            <label htmlFor={`name_attendee_${i}`}>
-              Attendee {i} Name:
-            </label>
-            <input type="text" id={`name_attendee_${i}`} onChange={(e) => handleSetName(`${i}`, e.target.value)}/>
-          </div>
-        )
-        inputs.push(input)
-      }
-      return (
-        <div id="attendee_container">
-          <h3>Please provide full names:</h3>
-          {inputs}
+  function renderInputNames(): JSX.Element {
+    let inputs: JSX.Element[] = []
+    for (let i = 1; i <= peopleCount; i++) {
+      let input = (
+        <div id={`attendee_${i}_wrap"`} key={i}>
+          <label htmlFor={`name_attendee_${i}`}>
+            Attendee {i} Name:
+          </label>
+          <input type="text" id={`name_attendee_${i}`} onChange={(e) => handleSetName(`${i}`, e.target.value)}/>
         </div>
       )
+      inputs.push(input)
     }
+    return (
+      <div id="attendee_container">
+        <h3>Please provide full names:</h3>
+        {inputs}
+      </div>
+    )
   }
 
   return (
@@ -74,7 +70,7 @@ export function Step1({ setMyState }: StepProps): JSX.Element {
           <option id="opt_4" value="4">4</option>
           <option id="opt_5" value="5">5</option>
       </select>
-        {renderInputNames()}
+        {(peopleCount > 0) ? renderInputNames() : null}
         {isComplete ? <div id="step1_result">Complete</div> : null}
     </fieldset>
   )
