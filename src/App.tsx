@@ -35,17 +35,9 @@ export default function App(): JSX.Element {
   
   let { state, dispatch } = useContext(store)
 
-  let [stepsComplete, setStepsComplete] = useState<StateSteps>({
-    step1: false,
-    step2: false,
-    step3: false
-  })
+  let [stepsComplete, setStepsComplete] = useState<StateSteps>(defaultStepsComplete)
 
-  let [stepsAvailable, setStepsAvailable] = useState<StateSteps>({
-    step1: true,
-    step2: false,
-    step3: false
-  })
+  let [stepsAvailable, setStepsAvailable] = useState<StateSteps>(defaultStepsAvailable)
 
   function handleSubmit(): void {
     setStepsComplete(defaultStepsComplete)
