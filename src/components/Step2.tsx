@@ -68,7 +68,7 @@ export function Step2({setMyState, setNextStep, available}: NotLastStep): JSX.El
   }
 
   return (
-    <fieldset className={`${!available ? 'disabled' : ''}`}>
+    <fieldset className={`step-2 ${!available ? 'disabled' : ''}`}>
       <legend>Step 2</legend>
         <p>Would you like your company name on your badges?</p>
         <input 

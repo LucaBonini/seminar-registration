@@ -39,10 +39,6 @@ export default function App(): JSX.Element {
     }
   })
 
-  useEffect(() => {
-    console.log(stepsComplete, 'STATE')
-  }, [stepsComplete])
-
   function setMyData(stepName: Steps, value: Step1Type | Step2Type | Step3Type ) {
     const newData: StateData = {
       ...data,

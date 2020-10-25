@@ -1,7 +1,52 @@
-.steps-container {
-  display: flex;
+body {
+  background-color: #2F2F2F;
+  font-family: sans-serif;
+  .steps-container {
+    display: flex;
+  
+    fieldset {
+      width: 33%;
 
-  .step {
-    width: 33%;
+      &.step-1 {
+        background-color: #7fffd4;
+      }
+
+      &.step-2 {
+        background-color: #add8e6;
+        &.disabled {
+          opacity: 0.3;
+        }
+      }
+
+      &.step-3 {
+        background-color: #FFE4B5;
+        &.disabled {
+          opacity: 0.3;
+        }
+      }
+  
+      legend {
+        font-weight: bold;
+        font-size: 1.5rem;
+        border-radius: 10px;
+        background-color: #FFFFFF;
+        padding: 0.5rem;
+      }
+
+      .attendee_wrap {
+        label {
+          font-style: italic;
+          font-size: 0.8rem;
+        }
+      }
+    }
+  
+    label {
+      font-style: italic;
+    }
+
+    input, select {
+      margin: 5px 5px;
+    }
   }
 }

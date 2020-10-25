@@ -47,7 +47,7 @@ export function Step1({ setMyState, setNextStep, available, setMyData }: NotLast
     let inputs: JSX.Element[] = []
     for (let i = 1; i <= peopleCount; i++) {
       let input = (
-        <div id={`attendee_${i}_wrap"`} key={i}>
+        <div key={i}>
           <label htmlFor={`name_attendee_${i}`}>
             Attendee {i} Name:
           </label>
@@ -57,7 +57,7 @@ export function Step1({ setMyState, setNextStep, available, setMyData }: NotLast
       inputs.push(input)
     }
     return (
-      <div id="attendee_container">
+      <div className="attendee_wrap">
         <h3>Please provide full names:</h3>
         {inputs}
       </div>
@@ -65,7 +65,7 @@ export function Step1({ setMyState, setNextStep, available, setMyData }: NotLast
   }
 
   return (
-    <fieldset>
+    <fieldset className="step-1">
       <legend>Step 1</legend>
       <label htmlFor="num_attendees">
           How many people will be attending?

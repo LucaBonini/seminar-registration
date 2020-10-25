@@ -14,7 +14,7 @@ export function Step3({ setMyState, available, handleSubmit }: LastStep): JSX.El
   }, [letSRock])
 
   return (
-    <fieldset className={`${!available ? 'disabled' : ''}`}>
+    <fieldset className={`step-3 ${!available ? 'disabled' : ''}`}>
       <legend>Step 3</legend>
       <label htmlFor="rock">
           Are you ready to rock?
