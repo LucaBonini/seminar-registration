@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { NotLastStep, Steps } from '../interfaces'
+import { CheckMark } from './checkMark'
 
 interface Names {
   [key: string]: string
@@ -79,7 +80,7 @@ export function Step1({ setMyState, setNextStep, available, setMyData }: NotLast
           <option id="opt_5" value="5">5</option>
       </select>
         {(peopleCount > 0) ? renderInputNames() : null}
-        {isComplete ? <div id="step1_result">Complete</div> : null}
+        {isComplete ? <CheckMark /> : null}
     </fieldset>
   )
 }

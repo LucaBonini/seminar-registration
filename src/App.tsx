@@ -25,7 +25,7 @@ export default function App(): JSX.Element {
     step3: false
   })
 
-  let [data, setData] = useState<StateData>({
+  const defaultState: StateData = {
     step1: {
       peopleCount: 0,
       names: {}
@@ -37,7 +37,9 @@ export default function App(): JSX.Element {
     step3: {
       letSRock: null
     }
-  })
+  }
+
+  let [data, setData] = useState<StateData>(defaultState)
 
   function setMyData(stepName: Steps, value: Step1Type | Step2Type | Step3Type ) {
     const newData: StateData = {
@@ -53,6 +55,17 @@ export default function App(): JSX.Element {
       ...data[Steps.step2],
       ...data[Steps.step3],
     }
+    setData(defaultState)
+    setStepsComplete({
+      step1: false,
+      step2: false,
+      step3: false
+    })
+    setStepsAvailable({
+      step1: true,
+      step2: false,
+      step3: false
+    })
     console.log(formData, 'DATA SUBMITTED')
   }
 
@@ -73,27 +86,30 @@ export default function App(): JSX.Element {
   }
 
   return (
-    <form action="">
-      <div className="steps-container">
-        <Step1 
-          setMyState={setStepState} 
-          setMyData={setMyData} 
-          setNextStep={setNextStep} 
-          available={stepsAvailable.step1}
-        ></Step1>
-        <Step2 
-          setMyState={setStepState} 
-          setMyData={setMyData} 
-          setNextStep={setNextStep} 
-          available={stepsAvailable.step2}
-        ></Step2>
-        <Step3 
-          setMyState={setStepState} 
-          setMyData={setMyData} 
-          available={stepsAvailable.step3}
-          handleSubmit={handleSubmit}
-        ></Step3>
-      </div>
-    </form>
+    <div>
+      <h1>Seminar <span>Registration</span></h1>
+      <form action="">
+        <div className="steps-container">
+          <Step1 
+            setMyState={setStepState} 
+            setMyData={setMyData} 
+            setNextStep={setNextStep} 
+            available={stepsAvailable.step1}
+          ></Step1>
+          <Step2 
+            setMyState={setStepState} 
+            setMyData={setMyData} 
+            setNextStep={setNextStep} 
+            available={stepsAvailable.step2}
+          ></Step2>
+          <Step3 
+            setMyState={setStepState} 
+            setMyData={setMyData} 
+            available={stepsAvailable.step2}
+            handleSubmit={handleSubmit}
+          ></Step3>
+        </div>
+      </form>
+    </div>
   )
 }

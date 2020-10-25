@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { NotLastStep } from '../interfaces'
+import { CheckMark } from './checkMark'
 
 export function Step2({setMyState, setNextStep, available}: NotLastStep): JSX.Element {
 
@@ -109,7 +110,7 @@ export function Step2({setMyState, setNextStep, available}: NotLastStep): JSX.El
           <label htmlFor="special_accommodations_toggle_off">No</label>
           {specialAccomodation ? renderSpecialAccomodationReason() : null}
         </div>
-        {isComplete ? <div>Complete</div> : null}
+        {isComplete ? <CheckMark /> : null}
     </fieldset>
   )
 }

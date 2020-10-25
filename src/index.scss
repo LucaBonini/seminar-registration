@@ -1,11 +1,22 @@
 body {
   background-color: #2F2F2F;
   font-family: sans-serif;
+
+  h1 {
+    color: #FFFFFF;
+    span {
+      color: blue;
+    }
+  }
+
   .steps-container {
     display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    padding: 1rem;
   
     fieldset {
-      width: 33%;
+      width: 31%;
 
       &.step-1 {
         background-color: #7fffd4;
@@ -47,6 +58,28 @@ body {
 
     input, select {
       margin: 5px 5px;
+    }
+  }
+
+  .check-mark {
+    display: flex;
+    justify-content: center;
+    div {
+      height: 60px;
+      width: 60px;
+      border-radius: 50%;
+      // border: 1px solid;
+      padding: 10px;
+      display: flex;
+      justify-content: center;
+      flex-direction: column;
+      align-items: center;
+      background-color: #D0F0c0;
+      box-shadow: 0 0 0 60px rgba(0,0,0,0) inset, .1em .1em .2em #000000;
+      span {
+        font-size: 80px;
+        color: green;
+      }
     }
   }
 }
