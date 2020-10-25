@@ -2,21 +2,23 @@ import React, { useState, useEffect } from 'react';
 import { NotLastStep } from '../interfaces'
 import { CheckMark } from './checkMark'
 
-export function Step2({setMyState, setNextStep, available}: NotLastStep): JSX.Element {
+export function Step2({
+  setMyState, 
+  setNextStep, 
+  available,
+  isComplete
+}: NotLastStep): JSX.Element {
 
   let [companyBadge, setCompanyBadge] = useState<boolean | null>(null)
   let [companyName, setCompanyName] = useState<string>('')
   let [specialAccomodation, setSpecialAccomodation] = useState<boolean | null>(null)
   let [specialAccomodationReason, setSpecialAccomodationReason] = useState<string>('')
-  let [isComplete, setIsComplete] = useState<boolean>(false)
 
   useEffect(() => {
     if (checkValues()) {
-      setIsComplete(true)
       setMyState('step2', true)
       setNextStep('step3', true)
     } else {
-      setIsComplete(false)
       setMyState('step2', false)
       setNextStep('step3', false)
     }

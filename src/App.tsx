@@ -10,6 +10,31 @@ interface StateSteps{
   step3: boolean
 }
 
+const defaultState: StateData = {
+  step1: {
+    peopleCount: 0,
+    names: {}
+  },
+  step2: {
+    companyBadge: null,
+    specialAccomodation: null
+  },
+  step3: {
+    letSRock: null
+  }
+}
+
+const defaultStepsComplete: StateSteps = {
+  step1: false,
+  step2: false,
+  step3: false
+}
+
+const defaultStepsAvailable: StateSteps = {
+  step1: true,
+  step2: false,
+  step3: false
+}
 
 export default function App(): JSX.Element {
 
@@ -25,19 +50,6 @@ export default function App(): JSX.Element {
     step3: false
   })
 
-  const defaultState: StateData = {
-    step1: {
-      peopleCount: 0,
-      names: {}
-    },
-    step2: {
-      companyBadge: null,
-      specialAccomodation: null
-    },
-    step3: {
-      letSRock: null
-    }
-  }
 
   let [data, setData] = useState<StateData>(defaultState)
 
@@ -56,16 +68,8 @@ export default function App(): JSX.Element {
       ...data[Steps.step3],
     }
     setData(defaultState)
-    setStepsComplete({
-      step1: false,
-      step2: false,
-      step3: false
-    })
-    setStepsAvailable({
-      step1: true,
-      step2: false,
-      step3: false
-    })
+    setStepsComplete(defaultStepsComplete)
+    setStepsAvailable(defaultStepsAvailable)
     console.log(formData, 'DATA SUBMITTED')
   }
 
@@ -95,18 +99,21 @@ export default function App(): JSX.Element {
             setMyData={setMyData} 
             setNextStep={setNextStep} 
             available={stepsAvailable.step1}
+            isComplete={stepsComplete.step1}
           ></Step1>
           <Step2 
             setMyState={setStepState} 
             setMyData={setMyData} 
             setNextStep={setNextStep} 
             available={stepsAvailable.step2}
+            isComplete={stepsComplete.step2}
           ></Step2>
           <Step3 
             setMyState={setStepState} 
             setMyData={setMyData} 
             available={stepsAvailable.step3}
             handleSubmit={handleSubmit}
+            isComplete={stepsComplete.step3}
           ></Step3>
         </div>
       </form>

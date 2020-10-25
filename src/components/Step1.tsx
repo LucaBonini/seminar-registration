@@ -6,14 +6,17 @@ interface Names {
   [key: string]: string
 }
 
-export function Step1({ setMyState, setNextStep, available, setMyData }: NotLastStep): JSX.Element {
+export function Step1({
+  setMyState, 
+  setNextStep, 
+  setMyData,
+  isComplete 
+}: NotLastStep): JSX.Element {
   let [peopleCount, setPeopleCount] = useState<number>(0)
   let [names, setNames] = useState<Names>({})
-  let [isComplete, setIsComplete] = useState<boolean>(false)
 
   useEffect(() => {
     if (checkValues()) {
-      setIsComplete(true)
       setMyState('step1', true)
       setNextStep('step2', true)
       setMyData(Steps.step1, {
@@ -21,8 +24,7 @@ export function Step1({ setMyState, setNextStep, available, setMyData }: NotLast
         names
       })
     } else {
-      setIsComplete(false)
-      setMyState('step2', false)
+      setMyState('step1', false)
       setNextStep('step2', false)
       setMyData(Steps.step1, {
         peopleCount,

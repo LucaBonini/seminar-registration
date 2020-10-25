@@ -10,6 +10,7 @@ export interface StepProps {
   setMyState(stepName: string, value: boolean): void,
   available: boolean,
   setMyData(stepName: Steps, value: Step1Type | Step2Type | Step3Type ): void
+  isComplete: boolean
 }
 export enum Steps {
   step1 = 'step1',
