@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { LastStep } from '../interfaces'
+import { LastStep } from '../types'
 
 export function Step3({ setMyState, available, handleSubmit }: LastStep): JSX.Element {
 

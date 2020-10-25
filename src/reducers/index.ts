@@ -1,4 +1,4 @@
-import { StateData, ActionType } from '../interfaces'
+import { StateData, ActionType } from '../types'
 type Action<T> = {
   type: ActionType,
   payload: T

@@ -1,5 +1,5 @@
 import React, { createContext, useReducer } from 'react'
-import { StateData, ActionType } from '../interfaces'
+import { StateData } from '../types'
 import { reducer } from '../reducers'
 
 export const initialState: StateData = {

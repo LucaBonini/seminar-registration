@@ -2,7 +2,7 @@ import React, { useState, useContext } from 'react'
 import { Step1 } from './components/Step1'
 import { Step2 } from './components/Step2'
 import { Step3 } from './components/Step3'
-import { StateData, ActionType } from './interfaces'
+import { StateData, ActionType } from './types'
 import { store } from './store'
 
 interface StateSteps{

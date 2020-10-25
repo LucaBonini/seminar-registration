@@ -1,5 +1,5 @@
 import React, { useEffect, useContext } from 'react'
-import { NotLastStep, ActionType } from '../interfaces'
+import { NotLastStep, ActionType } from '../types'
 import { CheckMark } from './checkMark'
 import { store } from '../store'
 
@@ -14,7 +14,6 @@ export function Step2({
   const { companyBadge, specialAccomodation } = state.step2
 
   useEffect(() => {
-    console.log(checkValues(), 'CHECK 2')
     if (checkValues()) {
       setMyState('step2', true)
       setNextStep('step3', true)
@@ -40,14 +39,15 @@ export function Step2({
 
   function checkValues(): boolean {
     const { companyName, specialAccomodationReason } = state.step2
-    console.log(state, 'STATE 2')
-    const company = 
-      (companyBadge !== null && (companyName|| '').length > 0 || 
-      companyBadge === false && !(companyName|| '').length)
-    const specialAcc = (
-      specialAccomodation !== null && (specialAccomodationReason || '').length > 0 ||
-      specialAccomodation == false && !(specialAccomodationReason || '').length 
-    ) 
+
+    const company =
+      (companyBadge !== null && ((companyName || '').length > 0)) ||
+        (companyBadge === false && !(companyName || '').length)
+
+    const specialAcc =
+      (specialAccomodation !== null && ((specialAccomodationReason || '').length > 0)) ||
+      (specialAccomodation === false && !(specialAccomodationReason || '').length)
+
     return (company && specialAcc)
   }
 

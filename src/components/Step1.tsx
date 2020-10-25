@@ -1,5 +1,5 @@
-import React, { useState, useEffect, useReducer, useContext } from 'react';
-import { NotLastStep, Steps,ActionType } from '../interfaces'
+import React, { useEffect, useContext } from 'react';
+import { NotLastStep, ActionType } from '../types'
 import { CheckMark } from './checkMark'
 import { store } from '../store'
 
