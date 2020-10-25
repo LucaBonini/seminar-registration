@@ -28,6 +28,12 @@ export enum ActionType {
   RESET_DEFAULT_STATE = 'reset_default_state'
 }
 
+export interface StateSteps{
+  step1: boolean,
+  step2: boolean,
+  step3: boolean
+}
+
 type Names = {
   [key: string]: string
 }

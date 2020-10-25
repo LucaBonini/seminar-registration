@@ -2,14 +2,8 @@ import React, { useState, useContext } from 'react'
 import { Step1 } from './components/Step1'
 import { Step2 } from './components/Step2'
 import { Step3 } from './components/Step3'
-import { StateData, ActionType } from './types'
+import { StateData, ActionType, StateSteps } from './types'
 import { store } from './store'
-
-interface StateSteps{
-  step1: boolean,
-  step2: boolean,
-  step3: boolean
-}
 
 const defaultState: StateData = {
   step1: {
@@ -39,7 +33,7 @@ const defaultStepsAvailable: StateSteps = {
 
 export default function App(): JSX.Element {
   
-  let { state, dispatch} = useContext(store)
+  let { state, dispatch } = useContext(store)
 
   let [stepsComplete, setStepsComplete] = useState<StateSteps>({
     step1: false,
@@ -53,10 +47,10 @@ export default function App(): JSX.Element {
     step3: false
   })
 
-  function handleSubmit() {
+  function handleSubmit(): void {
     setStepsComplete(defaultStepsComplete)
     setStepsAvailable(defaultStepsAvailable)
-    dispatch({type: ActionType.RESET_DEFAULT_STATE, payload: defaultState})
+    dispatch({ type: ActionType.RESET_DEFAULT_STATE, payload: defaultState })
     console.log(state, 'DATA SUBMITTED')
   }
 

@@ -10,14 +10,13 @@ export function Step2({
   isComplete
 }: NotLastStep): JSX.Element {
 
-  let { state, dispatch} = useContext(store)
+  let { state, dispatch } = useContext(store)
   const { companyBadge, specialAccomodation } = state.step2
 
   useEffect(() => {
     if (checkValues()) {
       setMyState('step2', true)
       setNextStep('step3', true)
-      console.log('validop')
     } else {
       setMyState('step2', false)
       setNextStep('step3', false)

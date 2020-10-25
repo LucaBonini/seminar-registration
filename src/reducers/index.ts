@@ -1,4 +1,5 @@
 import { StateData, ActionType } from '../types'
+
 type Action<T> = {
   type: ActionType,
   payload: T
