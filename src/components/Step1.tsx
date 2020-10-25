@@ -2,6 +2,8 @@ import React, { useEffect, useContext } from 'react';
 import { NotLastStep, ActionType } from '../types'
 import { CheckMark } from './checkMark'
 import { store } from '../store'
+import { SlideDown } from 'react-slidedown'
+import 'react-slidedown/lib/slidedown.css'
 
 export function Step1({
   setMyState, 
@@ -81,8 +83,12 @@ export function Step1({
         <option id="opt_4" value="4">4</option>
         <option id="opt_5" value="5">5</option>
       </select>
-        {(state.step1.peopleCount > 0) ? renderInputNames() : null}
-        {isComplete ? <CheckMark /> : null}
+        <SlideDown>
+          {(state.step1.peopleCount > 0) ? renderInputNames() : null}
+        </SlideDown>
+        <SlideDown>
+          {isComplete ? <CheckMark /> : null}
+        </SlideDown>
     </fieldset>
   )
 }

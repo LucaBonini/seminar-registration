@@ -2,6 +2,8 @@ import React, { useEffect, useContext } from 'react'
 import { NotLastStep, ActionType } from '../types'
 import { CheckMark } from './checkMark'
 import { store } from '../store'
+import { SlideDown } from 'react-slidedown'
+import 'react-slidedown/lib/slidedown.css'
 
 export function Step2({
   setMyState, 
@@ -107,7 +109,9 @@ export function Step2({
           disabled={!available}
         />
         <label htmlFor="company_name_toggle_off">No</label>
-        {companyBadge ? renderCompanyNameInput(): null}
+        <SlideDown>
+          {companyBadge ? renderCompanyNameInput(): null}
+        </SlideDown>
         <div>
           <p>Will anyone in your group require special accommodations?</p>
           <input 
@@ -127,9 +131,13 @@ export function Step2({
             disabled={!available}
           />
           <label htmlFor="special_accommodations_toggle_off">No</label>
-          {specialAccomodation ? renderSpecialAccomodationReason() : null}
+          <SlideDown>
+            {specialAccomodation ? renderSpecialAccomodationReason() : null}
+          </SlideDown>
         </div>
-        {isComplete ? <CheckMark /> : null}
+        <SlideDown>
+          {isComplete ? <CheckMark /> : null}
+        </SlideDown>
     </fieldset>
   )
 }
