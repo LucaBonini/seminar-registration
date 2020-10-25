@@ -52,7 +52,12 @@ export default function App(): JSX.Element {
   }
 
   function handleSubmit() {
-    console.log(data, 'DATA SUBMITTED')
+    const formData = {
+      ...data[Steps.step1],
+      ...data[Steps.step2],
+      ...data[Steps.step3],
+    }
+    console.log(formData, 'DATA SUBMITTED')
   }
 
   function setStepState(stepName: string, value: boolean) {
@@ -75,10 +80,10 @@ export default function App(): JSX.Element {
     <form action="">
       <div className="steps-container">
         <Step1 
-        setMyState={setStepState} 
-        setMyData={setMyData} 
-        setNextStep={setNextStep} 
-        available={stepsAvailable.step1}
+          setMyState={setStepState} 
+          setMyData={setMyData} 
+          setNextStep={setNextStep} 
+          available={stepsAvailable.step1}
         ></Step1>
         <Step2 
           setMyState={setStepState} 
