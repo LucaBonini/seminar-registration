@@ -105,7 +105,7 @@ export default function App(): JSX.Element {
           <Step3 
             setMyState={setStepState} 
             setMyData={setMyData} 
-            available={stepsAvailable.step2}
+            available={stepsAvailable.step3}
             handleSubmit={handleSubmit}
           ></Step3>
         </div>
