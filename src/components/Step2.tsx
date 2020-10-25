@@ -1,6 +1,7 @@
-import React, { useState, useEffect } from 'react';
-import { NotLastStep } from '../interfaces'
+import React, { useEffect, useContext } from 'react'
+import { NotLastStep, ActionType } from '../interfaces'
 import { CheckMark } from './checkMark'
+import { store } from '../store'
 
 export function Step2({
   setMyState, 
@@ -9,34 +10,43 @@ export function Step2({
   isComplete
 }: NotLastStep): JSX.Element {
 
-  let [companyBadge, setCompanyBadge] = useState<boolean | null>(null)
-  let [companyName, setCompanyName] = useState<string>('')
-  let [specialAccomodation, setSpecialAccomodation] = useState<boolean | null>(null)
-  let [specialAccomodationReason, setSpecialAccomodationReason] = useState<string>('')
+  let { state, dispatch} = useContext(store)
+  const { companyBadge, specialAccomodation } = state.step2
 
   useEffect(() => {
+    console.log(checkValues(), 'CHECK 2')
     if (checkValues()) {
       setMyState('step2', true)
       setNextStep('step3', true)
+      console.log('validop')
     } else {
       setMyState('step2', false)
       setNextStep('step3', false)
     }
-  },[companyBadge, companyName, specialAccomodation, specialAccomodationReason])
+  },[state.step2])
 
   function onChangeCompanyBadge(value: boolean): void {
-    setCompanyBadge(value)
+    dispatch({type:ActionType.COMPANY_BADGE, payload: value})
+    dispatch({type: ActionType.COMPANY_NAME, payload: ''})
   }
 
   function onChangeSpecialAccomodation(value: boolean): void {
-    setSpecialAccomodation(value)
+    dispatch({type: ActionType.NEED_SPECIAL_ACCOMODATION, payload: value})
+    dispatch({
+      type: ActionType.SPECIAL_ACCOMODATION_REASON,
+      payload: ''
+    })
   }
 
   function checkValues(): boolean {
-    const company = (companyBadge !== null && companyName.length > 0 || companyBadge === false && !companyName.length)
+    const { companyName, specialAccomodationReason } = state.step2
+    console.log(state, 'STATE 2')
+    const company = 
+      (companyBadge !== null && (companyName|| '').length > 0 || 
+      companyBadge === false && !(companyName|| '').length)
     const specialAcc = (
-      specialAccomodation !== null && specialAccomodationReason.length > 0 ||
-      specialAccomodation == false && !specialAccomodationReason.length 
+      specialAccomodation !== null && (specialAccomodationReason || '').length > 0 ||
+      specialAccomodation == false && !(specialAccomodationReason || '').length 
     ) 
     return (company && specialAcc)
   }
@@ -47,7 +57,10 @@ export function Step2({
           <label htmlFor="company_name">
               Company Name:
           </label>
-          <input type="text" name="companyName" onChange={(e) => setCompanyName(e.target.value)}/>
+          <input type="text" name="companyName" 
+            onChange={
+              (e) => dispatch({type: ActionType.COMPANY_NAME, payload: e.target.value})
+          }/>
       </div>
     )
   }
@@ -63,7 +76,12 @@ export function Step2({
               rows={10} 
               cols={10} 
               id="special_accomodations_text" 
-              onChange={(e) => setSpecialAccomodationReason(e.target.value)}>  
+              onChange={
+                (e) => dispatch({
+                  type: ActionType.SPECIAL_ACCOMODATION_REASON,
+                  payload: e.target.value
+                })
+              }>  
             </textarea>
           </div>
       </div>

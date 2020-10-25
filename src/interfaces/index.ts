@@ -9,13 +9,23 @@ export interface LastStep extends StepProps {
 export interface StepProps {
   setMyState(stepName: string, value: boolean): void,
   available: boolean,
-  setMyData(stepName: Steps, value: Step1Type | Step2Type | Step3Type ): void
   isComplete: boolean
 }
 export enum Steps {
   step1 = 'step1',
   step2 = 'step2',
   step3 = 'step3'
+}
+
+export enum ActionType {
+  PEOPLE_COUNT = 'people_count',
+  ATTENDER_NAMES = 'attenders_name',
+  COMPANY_BADGE = 'company_badge',
+  COMPANY_NAME = 'company_name',
+  NEED_SPECIAL_ACCOMODATION = 'need_special_accomodation',
+  SPECIAL_ACCOMODATION_REASON = 'special_accomodation_reason',
+  READY_TO_ROCK = 'ready_to_rock',
+  RESET_DEFAULT_STATE = 'reset_default_state'
 }
 
 type Names = {
