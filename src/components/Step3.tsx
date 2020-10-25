@@ -14,12 +14,17 @@ export function Step3({ setMyState, available, handleSubmit }: LastStep): JSX.El
   }, [letSRock])
 
   return (
-    <fieldset>
+    <fieldset className={`${!available ? 'disabled' : ''}`}>
       <legend>Step 3</legend>
       <label htmlFor="rock">
           Are you ready to rock?
       </label>
-      <input type="checkbox" id="rock" onChange={(e) => setLetSRock(e.target.checked)}/>
+      <input 
+        type="checkbox"
+        id="rock" 
+        onChange={(e) => setLetSRock(e.target.checked)}
+        disabled={!available}
+      />
       <input 
         type="submit" 
         id="submit_button" 

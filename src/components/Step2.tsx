@@ -68,7 +68,7 @@ export function Step2({setMyState, setNextStep, available}: NotLastStep): JSX.El
   }
 
   return (
-    <fieldset>
+    <fieldset className={`${!available ? 'disabled' : ''}`}>
       <legend>Step 2</legend>
         <p>Would you like your company name on your badges?</p>
         <input 
@@ -76,6 +76,7 @@ export function Step2({setMyState, setNextStep, available}: NotLastStep): JSX.El
           id="company_name_toggle_on" 
           name="company_name_toggle_group"
           onChange={() => onChangeCompanyBadge(true)}
+          disabled={!available}
         />
         <label htmlFor="company_name_toggle_on">Yes</label>
         <input 
@@ -83,6 +84,7 @@ export function Step2({setMyState, setNextStep, available}: NotLastStep): JSX.El
           id="company_name_toggle_off" 
           name="company_name_toggle_group"
           onChange={() => onChangeCompanyBadge(false)}
+          disabled={!available}
         />
         <label htmlFor="company_name_toggle_off">No</label>
         {companyBadge ? renderCompanyNameInput(): null}
@@ -93,6 +95,7 @@ export function Step2({setMyState, setNextStep, available}: NotLastStep): JSX.El
             id="special_accommodations_toggle_on" 
             name="special_accommodations_toggle"
             onChange={() => onChangeSpecialAccomodation(true)}
+            disabled={!available}
           />
           <label htmlFor="special_accommodations_toggle_on">Yes</label>
           &emsp;
@@ -101,6 +104,7 @@ export function Step2({setMyState, setNextStep, available}: NotLastStep): JSX.El
             id="special_accommodations_toggle_off" 
             name="special_accommodations_toggle"
             onChange={() => onChangeSpecialAccomodation(false)}
+            disabled={!available}
           />
           <label htmlFor="special_accommodations_toggle_off">No</label>
           {specialAccomodation ? renderSpecialAccomodationReason() : null}
