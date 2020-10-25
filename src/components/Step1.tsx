@@ -10,7 +10,7 @@ export function Step1({
 }: NotLastStep): JSX.Element {
 
   let { state, dispatch} = useContext(store)
-  let { names } = state.step1
+  let { names, peopleCount } = state.step1
 
   useEffect(() => {
     if (checkValues()) {
@@ -36,6 +36,10 @@ export function Step1({
         value
       }
     })
+  }
+
+  function isSelected(value: number): boolean {
+    return (peopleCount === value) ? true : false
   }
 
   function renderInputNames(): JSX.Element {
@@ -70,12 +74,12 @@ export function Step1({
         onChange={
           (e) => dispatch({type: ActionType.PEOPLE_COUNT, payload:parseInt(e.target.value)})}
         >
-          <option id="opt_0" value="0">Please Choose</option>
-          <option id="opt_1" value="1">1</option>
-          <option id="opt_2" value="2">2</option>
-          <option id="opt_3" value="3">3</option>
-          <option id="opt_4" value="4">4</option>
-          <option id="opt_5" value="5">5</option>
+          <option id="opt_0" value="0" selected={isSelected(1)}>Please Choose</option>
+          <option id="opt_1" value="1" selected={isSelected(2)}>1</option>
+          <option id="opt_2" value="2" selected={isSelected(3)}>2</option>
+          <option id="opt_3" value="3" selected={isSelected(4)}>3</option>
+          <option id="opt_4" value="4" selected={isSelected(5)}>4</option>
+          <option id="opt_5" value="5" selected={isSelected(6)}>5</option>
       </select>
         {(state.step1.peopleCount > 0) ? renderInputNames() : null}
         {isComplete ? <CheckMark /> : null}
