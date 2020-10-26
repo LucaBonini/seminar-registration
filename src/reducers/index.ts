@@ -1,12 +1,12 @@
 import { StateData, ActionType } from '../types'
 
-type Action<T> = {
-  type: ActionType,
+interface Action<T> {
+  type: ActionType
   payload: T
 }
 
 export const reducer = (state: StateData, action: Action<any>): StateData => {
-  switch(action.type) {
+  switch (action.type) {
     case ActionType.PEOPLE_COUNT:
       return {
         ...state,
@@ -69,6 +69,6 @@ export const reducer = (state: StateData, action: Action<any>): StateData => {
     case ActionType.RESET_DEFAULT_STATE:
       return action.payload
     default:
-      throw new Error();
+      throw new Error()
   };
 }

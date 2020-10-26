@@ -27,22 +27,21 @@ const defaultStepsComplete: StateSteps = {
 
 const defaultStepsAvailable: boolean[] = [true, false, false]
 
-export default function App(): JSX.Element {
-  
-  let { state, dispatch } = useContext(store)
+export default function App (): JSX.Element {
+  const { state, dispatch } = useContext(store)
 
-  let [stepsComplete, setStepsComplete] = useState<StateSteps>(defaultStepsComplete)
+  const [stepsComplete, setStepsComplete] = useState<StateSteps>(defaultStepsComplete)
 
-  let [stepsAvailable, setStepsAvailable] = useState<boolean[]>(defaultStepsAvailable)
+  const [stepsAvailable, setStepsAvailable] = useState<boolean[]>(defaultStepsAvailable)
 
-  function handleSubmit(): void {
+  function handleSubmit (): void {
     setStepsComplete(defaultStepsComplete)
     setStepsAvailable(defaultStepsAvailable)
     dispatch({ type: ActionType.RESET_DEFAULT_STATE, payload: defaultState })
     console.log(state, 'DATA SUBMITTED')
   }
 
-  function setStepState(stepName: string, value: boolean) {
+  function setStepState (stepName: string, value: boolean) {
     const newStepsComplete: StateSteps = {
       ...stepsComplete,
       [stepName]: value
@@ -50,8 +49,8 @@ export default function App(): JSX.Element {
     setStepsComplete(newStepsComplete)
   }
 
-  function setNextStep(stepName: number, value: boolean) {
-    let newStepsAvailable: boolean[] = [...stepsAvailable]
+  function setNextStep (stepName: number, value: boolean) {
+    const newStepsAvailable: boolean[] = [...stepsAvailable]
     newStepsAvailable.forEach((step, i) => {
       if (i === stepName) newStepsAvailable[i] = value
       if (i > stepName) newStepsAvailable[i] = false
@@ -62,26 +61,26 @@ export default function App(): JSX.Element {
   return (
     <div>
       <h1>Seminar <span>Registration</span></h1>
-      <form action="">
-        <div className="steps-container">
-          <Step1 
-            setMyState={setStepState} 
-            setNextStep={setNextStep} 
+      <form action=''>
+        <div className='steps-container'>
+          <Step1
+            setMyState={setStepState}
+            setNextStep={setNextStep}
             available={stepsAvailable[0]}
             isComplete={stepsComplete.step1}
-          ></Step1>
-          <Step2 
-            setMyState={setStepState} 
-            setNextStep={setNextStep} 
+          />
+          <Step2
+            setMyState={setStepState}
+            setNextStep={setNextStep}
             available={stepsAvailable[1]}
             isComplete={stepsComplete.step2}
-          ></Step2>
-          <Step3 
-            setMyState={setStepState} 
+          />
+          <Step3
+            setMyState={setStepState}
             available={stepsAvailable[2]}
             handleSubmit={handleSubmit}
             isComplete={stepsComplete.step3}
-          ></Step3>
+          />
         </div>
       </form>
     </div>

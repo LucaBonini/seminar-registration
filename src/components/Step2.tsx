@@ -5,14 +5,13 @@ import { store } from '../store'
 import { SlideDown } from 'react-slidedown'
 import 'react-slidedown/lib/slidedown.css'
 
-export function Step2({
-  setMyState, 
-  setNextStep, 
+export function Step2 ({
+  setMyState,
+  setNextStep,
   available,
   isComplete
 }: NotLastStep): JSX.Element {
-
-  let { state, dispatch } = useContext(store)
+  const { state, dispatch } = useContext(store)
   const { companyBadge, specialAccomodation } = state.step2
 
   useEffect(() => {
@@ -23,22 +22,22 @@ export function Step2({
       setMyState('step2', false)
       setNextStep(2, false)
     }
-  },[state.step2])
+  }, [state.step2])
 
-  function onChangeCompanyBadge(value: boolean): void {
-    dispatch({type:ActionType.COMPANY_BADGE, payload: value})
-    dispatch({type: ActionType.COMPANY_NAME, payload: ''})
+  function onChangeCompanyBadge (value: boolean): void {
+    dispatch({ type: ActionType.COMPANY_BADGE, payload: value })
+    dispatch({ type: ActionType.COMPANY_NAME, payload: '' })
   }
 
-  function onChangeSpecialAccomodation(value: boolean): void {
-    dispatch({type: ActionType.NEED_SPECIAL_ACCOMODATION, payload: value})
+  function onChangeSpecialAccomodation (value: boolean): void {
+    dispatch({ type: ActionType.NEED_SPECIAL_ACCOMODATION, payload: value })
     dispatch({
       type: ActionType.SPECIAL_ACCOMODATION_REASON,
       payload: ''
     })
   }
 
-  function checkValues(): boolean {
+  function checkValues (): boolean {
     const { companyName, specialAccomodationReason } = state.step2
 
     const company =
@@ -52,38 +51,40 @@ export function Step2({
     return (company && specialAcc)
   }
 
-  function renderCompanyNameInput(): JSX.Element {
+  function renderCompanyNameInput (): JSX.Element {
     return (
-      <div id="company_name_wrap">
-          <label htmlFor="company_name">
-              Company Name:
-          </label>
-          <input type="text" name="companyName" 
-            onChange={
-              (e) => dispatch({type: ActionType.COMPANY_NAME, payload: e.target.value})
-          }/>
+      <div id='company_name_wrap'>
+        <label htmlFor='company_name'>
+          Company Name:
+        </label>
+        <input
+          type='text' name='companyName'
+          onChange={
+            (e) => dispatch({ type: ActionType.COMPANY_NAME, payload: e.target.value })
+          }
+        />
       </div>
     )
   }
 
-  function renderSpecialAccomodationReason(): JSX.Element {
+  function renderSpecialAccomodationReason (): JSX.Element {
     return (
-      <div id="special_accommodations_wrap">
-          <label htmlFor="special_accomodations_text">
-              Please explain below:
-          </label>
-          <div>
-            <textarea 
-              rows={10}
-              id="special_accomodations_text" 
-              onChange={
-                (e) => dispatch({
-                  type: ActionType.SPECIAL_ACCOMODATION_REASON,
-                  payload: e.target.value
-                })
-              }>  
-            </textarea>
-          </div>
+      <div id='special_accommodations_wrap'>
+        <label htmlFor='special_accomodations_text'>
+          Please explain below:
+        </label>
+        <div>
+          <textarea
+            rows={10}
+            id='special_accomodations_text'
+            onChange={
+              (e) => dispatch({
+                type: ActionType.SPECIAL_ACCOMODATION_REASON,
+                payload: e.target.value
+              })
+            }
+          />
+        </div>
       </div>
     )
   }
@@ -91,52 +92,52 @@ export function Step2({
   return (
     <fieldset className={`step-2 ${!available ? 'disabled' : ''}`}>
       <legend>Step 2</legend>
-        <p>Would you like your company name on your badges?</p>
-        <input 
-          type="radio" 
-          id="company_name_toggle_on" 
-          name="company_name_toggle_group"
-          onChange={() => onChangeCompanyBadge(true)}
+      <p>Would you like your company name on your badges?</p>
+      <input
+        type='radio'
+        id='company_name_toggle_on'
+        name='company_name_toggle_group'
+        onChange={() => onChangeCompanyBadge(true)}
+        disabled={!available}
+      />
+      <label htmlFor='company_name_toggle_on'>Yes</label>
+      <input
+        type='radio'
+        id='company_name_toggle_off'
+        name='company_name_toggle_group'
+        onChange={() => onChangeCompanyBadge(false)}
+        disabled={!available}
+      />
+      <label htmlFor='company_name_toggle_off'>No</label>
+      <SlideDown>
+        {companyBadge ? renderCompanyNameInput() : null}
+      </SlideDown>
+      <div>
+        <p>Will anyone in your group require special accommodations?</p>
+        <input
+          type='radio'
+          id='special_accommodations_toggle_on'
+          name='special_accommodations_toggle'
+          onChange={() => onChangeSpecialAccomodation(true)}
           disabled={!available}
         />
-        <label htmlFor="company_name_toggle_on">Yes</label>
-        <input 
-          type="radio" 
-          id="company_name_toggle_off" 
-          name="company_name_toggle_group"
-          onChange={() => onChangeCompanyBadge(false)}
+        <label htmlFor='special_accommodations_toggle_on'>Yes</label>
+        &emsp;
+        <input
+          type='radio'
+          id='special_accommodations_toggle_off'
+          name='special_accommodations_toggle'
+          onChange={() => onChangeSpecialAccomodation(false)}
           disabled={!available}
         />
-        <label htmlFor="company_name_toggle_off">No</label>
+        <label htmlFor='special_accommodations_toggle_off'>No</label>
         <SlideDown>
-          {companyBadge ? renderCompanyNameInput(): null}
+          {specialAccomodation ? renderSpecialAccomodationReason() : null}
         </SlideDown>
-        <div>
-          <p>Will anyone in your group require special accommodations?</p>
-          <input 
-            type="radio" 
-            id="special_accommodations_toggle_on" 
-            name="special_accommodations_toggle"
-            onChange={() => onChangeSpecialAccomodation(true)}
-            disabled={!available}
-          />
-          <label htmlFor="special_accommodations_toggle_on">Yes</label>
-          &emsp;
-          <input 
-            type="radio" 
-            id="special_accommodations_toggle_off" 
-            name="special_accommodations_toggle"
-            onChange={() => onChangeSpecialAccomodation(false)}
-            disabled={!available}
-          />
-          <label htmlFor="special_accommodations_toggle_off">No</label>
-          <SlideDown>
-            {specialAccomodation ? renderSpecialAccomodationReason() : null}
-          </SlideDown>
-        </div>
-        <SlideDown>
-          {isComplete ? <CheckMark /> : null}
-        </SlideDown>
+      </div>
+      <SlideDown>
+        {isComplete ? <CheckMark /> : null}
+      </SlideDown>
     </fieldset>
   )
 }

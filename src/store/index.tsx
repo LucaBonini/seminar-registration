@@ -14,21 +14,20 @@ export const initialState: StateData = {
   step3: {
     letSRock: null
   }
-};
+}
 
 export const store = createContext<{
-  state: StateData,
+  state: StateData
   dispatch: React.Dispatch<any>
 }>({
   state: initialState,
   dispatch: () => null
-});
+})
 
-const { Provider } = store;
+const { Provider } = store
 
-export const StateProvider = ( { children }: {children: JSX.Element} ) => {
-  const [state, dispatch] = useReducer(reducer, initialState);
+export const StateProvider = ({ children }: {children: JSX.Element}) => {
+  const [state, dispatch] = useReducer(reducer, initialState)
 
-  return <Provider value={{ state, dispatch }}>{children}</Provider>;
-};
-
+  return <Provider value={{ state, dispatch }}>{children}</Provider>
+}

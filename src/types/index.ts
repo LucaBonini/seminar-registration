@@ -1,14 +1,14 @@
 export interface NotLastStep extends StepProps {
-  setNextStep(stepName: number, value: boolean): void
+  setNextStep: (stepName: number, value: boolean) => void
 }
 
 export interface LastStep extends StepProps {
-  handleSubmit(): void
+  handleSubmit: () => void
 }
 
 export interface StepProps {
-  setMyState(stepName: string, value: boolean): void,
-  available: boolean,
+  setMyState: (stepName: string, value: boolean) => void
+  available: boolean
   isComplete: boolean
 }
 export enum Steps {
@@ -29,33 +29,33 @@ export enum ActionType {
 }
 
 export interface StateSteps{
-  step1: boolean,
-  step2: boolean,
+  step1: boolean
+  step2: boolean
   step3: boolean
 }
 
-type Names = {
+interface Names {
   [key: string]: string
 }
 
-export type Step1Type = {
-  peopleCount: number,
-  names: Names,
+export interface Step1Type {
+  peopleCount: number
+  names: Names
 }
 
-export type Step2Type = {
-  companyBadge: boolean | null,
-  companyName?: string,
-  specialAccomodation: boolean | null,
-  specialAccomodationReason?: string,
+export interface Step2Type {
+  companyBadge: boolean | null
+  companyName?: string
+  specialAccomodation: boolean | null
+  specialAccomodationReason?: string
 }
 
-export type Step3Type = {
-  letSRock: boolean | null,
+export interface Step3Type {
+  letSRock: boolean | null
 }
 
 export interface StateData {
-  step1: Step1Type,
-  step2: Step2Type,
+  step1: Step1Type
+  step2: Step2Type
   step3: Step3Type
 }
