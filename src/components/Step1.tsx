@@ -52,7 +52,10 @@ export function Step1({
           <label htmlFor={`name_attendee_${i}`}>
             Attendee {i} Name:
           </label>
-          <input type="text" id={`name_attendee_${i}`} onChange={(e) => handleSetName(`${i}`, e.target.value)}/>
+          <input 
+            type="text" 
+            id={`name_attendee_${i}`} 
+            onChange={(e) => handleSetName(`${i}`, e.target.value)}/>
         </div>
       )
       inputs.push(input)
