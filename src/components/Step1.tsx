@@ -17,10 +17,10 @@ export function Step1({
   useEffect(() => {
     if (checkValues()) {
       setMyState('step1', true)
-      setNextStep('step2', true)
+      setNextStep(1, true)
     } else {
       setMyState('step1', false)
-      setNextStep('step2', false)
+      setNextStep(1, false)
     }
   }, [names])
 

@@ -1,5 +1,5 @@
 export interface NotLastStep extends StepProps {
-  setNextStep(stepName: string, value: boolean): void
+  setNextStep(stepName: number, value: boolean): void
 }
 
 export interface LastStep extends StepProps {

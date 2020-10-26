@@ -18,10 +18,10 @@ export function Step2({
   useEffect(() => {
     if (checkValues()) {
       setMyState('step2', true)
-      setNextStep('step3', true)
+      setNextStep(2, true)
     } else {
       setMyState('step2', false)
-      setNextStep('step3', false)
+      setNextStep(2, false)
     }
   },[state.step2])
 
@@ -74,8 +74,7 @@ export function Step2({
           </label>
           <div>
             <textarea 
-              rows={10} 
-              cols={10} 
+              rows={10}
               id="special_accomodations_text" 
               onChange={
                 (e) => dispatch({

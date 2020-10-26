@@ -25,11 +25,7 @@ const defaultStepsComplete: StateSteps = {
   step3: false
 }
 
-const defaultStepsAvailable: StateSteps = {
-  step1: true,
-  step2: false,
-  step3: false
-}
+const defaultStepsAvailable: boolean[] = [true, false, false]
 
 export default function App(): JSX.Element {
   
@@ -37,7 +33,7 @@ export default function App(): JSX.Element {
 
   let [stepsComplete, setStepsComplete] = useState<StateSteps>(defaultStepsComplete)
 
-  let [stepsAvailable, setStepsAvailable] = useState<StateSteps>(defaultStepsAvailable)
+  let [stepsAvailable, setStepsAvailable] = useState<boolean[]>(defaultStepsAvailable)
 
   function handleSubmit(): void {
     setStepsComplete(defaultStepsComplete)
@@ -54,11 +50,12 @@ export default function App(): JSX.Element {
     setStepsComplete(newStepsComplete)
   }
 
-  function setNextStep(stepName: string, value: boolean) {
-    const newStepsAvailable: StateSteps = {
-      ...stepsAvailable,
-      [stepName]: value
-    }
+  function setNextStep(stepName: number, value: boolean) {
+    let newStepsAvailable: boolean[] = [...stepsAvailable]
+    newStepsAvailable.forEach((step, i) => {
+      if (i === stepName) newStepsAvailable[i] = value
+      if (i > stepName) newStepsAvailable[i] = false
+    })
     setStepsAvailable(newStepsAvailable)
   }
 
@@ -70,18 +67,18 @@ export default function App(): JSX.Element {
           <Step1 
             setMyState={setStepState} 
             setNextStep={setNextStep} 
-            available={stepsAvailable.step1}
+            available={stepsAvailable[0]}
             isComplete={stepsComplete.step1}
           ></Step1>
           <Step2 
             setMyState={setStepState} 
             setNextStep={setNextStep} 
-            available={stepsAvailable.step2}
+            available={stepsAvailable[1]}
             isComplete={stepsComplete.step2}
           ></Step2>
           <Step3 
             setMyState={setStepState} 
-            available={stepsAvailable.step3}
+            available={stepsAvailable[2]}
             handleSubmit={handleSubmit}
             isComplete={stepsComplete.step3}
           ></Step3>
