@@ -13,9 +13,16 @@ body {
     display: flex;
     align-items: flex-start;
     justify-content: space-between;
+    flex-wrap: wrap;
   
     fieldset {
-      width: 31%;
+      @media screen and (max-width: 576px){
+        width: 100%;
+      }
+      
+      @media screen and (min-width: 576px){
+        width: 31%;
+      }
 
       &.step-1 {
         background-color: #7fffd4;
